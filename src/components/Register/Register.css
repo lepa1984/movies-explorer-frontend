@@ -1,0 +1,143 @@
+.register {
+    padding: 70px 0;
+    height: 100%;
+    box-sizing: border-box;
+}
+.register .container {
+    max-width: 456px;
+    width: 100%;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+}
+.register__logo {
+    display: block;
+    margin-bottom: 40px;
+}
+.register__logo img {
+    width: 38px;
+    height: 38px;
+}
+.register__title {
+    color: #000;
+    margin-top: 0;
+    font-size: 24px;
+    margin-bottom: 40px;
+    font-weight: 500;
+    line-height: normal;
+}
+.register__form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.register__fields {
+    box-sizing: border-box;
+    height: 100%;
+}
+.register__input {
+    border: none;
+    border-bottom: 1px solid #e8e8e8;
+    outline: none;
+    padding: 5px 0 10px;
+    background: transparent;
+    width: 100%;
+    font-size: 14px;
+    line-height: normal;
+    font-weight: 500;
+}
+.register__input::placeholder {
+    color: #000;
+    font-size: 14px;
+    line-height: normal;
+    font-weight: 500;
+}
+.register__field p {
+    color: #a0a0a0;
+    margin: 0;
+    font-size: 10px;
+    line-height: normal;
+}
+.register__input:focus {
+    border-bottom: 1px solid #3456f3;
+}
+.register__input {
+}
+.register__field {
+    display: block;
+    width: 100%;
+}
+.register__field:not(:last-child) {
+    margin-bottom: 24px;
+}
+.register__error {
+    color: #ee3465;
+    font-size: 10px;
+    line-height: normal;
+    margin-top: 6px;
+    margin-bottom: 65px;
+    opacity: 0;
+    visibility: hidden;
+}
+.register__button {
+    border-radius: 3px;
+    background: #3456f3;
+    width: 100%;
+    border: none;
+    padding: 14px;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 16px;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: auto;
+    transition: 0.3s;
+}
+.register__button:hover {
+    opacity: 0.8;
+}
+.register__text {
+    margin: 0;
+    color: #a0a0a0;
+    font-size: 14px;
+    line-height: normal;
+    text-align: center;
+}
+.register__link {
+    display: inline-block;
+    margin-left: 6px;
+    color: #3456f3;
+    font-size: 14px;
+    line-height: normal;
+    text-decoration: none;
+}
+@media (max-width: 768px) {
+    .register {
+        padding: 56px 0 30px;
+    }
+    .register__logo {
+        text-align: center;
+    }
+    .register__title {
+        text-align: center;
+        margin-bottom: 80px;
+    }
+    .register__error {
+        margin-bottom: 40px;
+    }
+    .register__button {
+        font-size: 12px;
+        margin-bottom: 14px;
+    }
+    .register__text {
+        font-size: 12px;
+    }
+    .register__link {
+        font-size: 12px;
+    }
+    .register .container {
+        padding: 0 30px;
+    }
+}

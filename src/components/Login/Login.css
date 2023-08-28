@@ -1,0 +1,139 @@
+.login {
+    padding: 70px 0;
+    height: 100%;
+    box-sizing: border-box;
+}
+.login .container {
+    max-width: 456px;
+    width: 100%;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+}
+.login__logo {
+    display: block;
+    margin-bottom: 40px;
+}
+.login__logo img {
+    width: 38px;
+    height: 38px;
+}
+.login__title {
+    color: #000;
+    margin-top: 0;
+    font-size: 24px;
+    margin-bottom: 40px;
+    font-weight: 500;
+    line-height: normal;
+}
+.login__form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.login__fields {
+    box-sizing: border-box;
+    height: 100%;
+}
+.login__input {
+    border: none;
+    border-bottom: 1px solid #e8e8e8;
+    outline: none;
+    padding: 5px 0 10px;
+    background: transparent;
+    width: 100%;
+}
+.login__input::placeholder {
+    color: #000;
+    font-size: 14px;
+    line-height: normal;
+}
+.login__field p {
+    color: #a0a0a0;
+    margin: 0;
+    font-size: 10px;
+    line-height: normal;
+}
+.login__input:focus {
+    border-bottom: 1px solid #3456f3;
+}
+.login__input {
+}
+.login__field {
+    display: block;
+    width: 100%;
+}
+.login__field:not(:last-child) {
+    margin-bottom: 24px;
+}
+.login__error {
+    color: #ee3465;
+    font-size: 10px;
+    line-height: normal;
+    margin-top: 6px;
+    margin-bottom: 65px;
+    opacity: 0;
+    visibility: hidden;
+}
+.login__button {
+    border-radius: 3px;
+    background: #3456f3;
+    width: 100%;
+    border: none;
+    padding: 14px;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 16px;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: auto;
+    transition: 0.3s;
+}
+.login__button:hover {
+    opacity: 0.8;
+}
+.login__text {
+    margin: 0;
+    color: #a0a0a0;
+    font-size: 14px;
+    line-height: normal;
+    text-align: center;
+}
+.login__link {
+    display: inline-block;
+    margin-left: 6px;
+    color: #3456f3;
+    font-size: 14px;
+    line-height: normal;
+    text-decoration: none;
+}
+@media (max-width: 768px) {
+    .login {
+        padding: 56px 0 30px;
+    }
+    .login__logo {
+        text-align: center;
+    }
+    .login__title {
+        text-align: center;
+        margin-bottom: 80px;
+    }
+    .login__error {
+        margin-bottom: 40px;
+    }
+    .login__button {
+        font-size: 12px;
+        margin-bottom: 14px;
+    }
+    .login__text {
+        font-size: 12px;
+    }
+    .login__link {
+        font-size: 12px;
+    }
+    .login .container {
+        padding: 0 30px;
+    }
+}
