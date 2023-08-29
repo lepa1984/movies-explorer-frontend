@@ -1,14 +1,10 @@
 .register {
     padding: 70px 0;
-    height: 100%;
     box-sizing: border-box;
 }
 .register .container {
     max-width: 456px;
     width: 100%;
-    display: flex;
-    height: 100%;
-    flex-direction: column;
 }
 .register__logo {
     display: block;
@@ -17,12 +13,13 @@
 .register__logo img {
     width: 38px;
     height: 38px;
+    display: block;
 }
 .register__title {
     color: #000;
     margin-top: 0;
     font-size: 24px;
-    margin-bottom: 40px;
+    margin-bottom: 41px;
     font-weight: 500;
     line-height: normal;
 }
@@ -75,7 +72,7 @@
     font-size: 10px;
     line-height: normal;
     margin-top: 6px;
-    margin-bottom: 65px;
+    margin-bottom: 135px;
     opacity: 0;
     visibility: hidden;
 }
@@ -113,7 +110,7 @@
     line-height: normal;
     text-decoration: none;
 }
-@media (max-width: 768px) {
+@media (max-width: 750px) {
     .register {
         padding: 56px 0 30px;
     }
@@ -125,7 +122,7 @@
         margin-bottom: 80px;
     }
     .register__error {
-        margin-bottom: 40px;
+        margin-bottom: 222px;
     }
     .register__button {
         font-size: 12px;

@@ -22,10 +22,10 @@ const Navigation = () => {
       ${isMenuOpened ? 'header__menu_opened' : ''}`}
             >
                 <div className='header__inner'>
-                    <div
+                    <button
                         className='header__close'
                         onClick={handleOpenMenu}
-                    ></div>
+                    ></button>
                     <nav className='header__navigation'>
                         <ul className={'header__list'}>
                             <li
@@ -77,7 +77,7 @@ const Navigation = () => {
                         className='
                     header__profile'
                     >
-                        <div className='header__profile_icon' />
+                        <div className='header__profile-icon' />
                         Аккаунт
                     </NavLink>
                 </div>

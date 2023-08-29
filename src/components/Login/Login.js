@@ -18,7 +18,7 @@ const Footer = () => (
                             id='email-input'
                             type='email'
                             required
-                            placeholder=''
+                            placeholder='example@yandex.ru'
                         />
                     </label>
                     <label className='login__field'>
@@ -38,7 +38,7 @@ const Footer = () => (
             <p className='login__text'>
                 Ещё не зарегистрированы?
                 <Link to={'/sign-up'} className='login__link'>
-                    Зарегистрироваться
+                    Регистрация
                 </Link>
             </p>
         </div>

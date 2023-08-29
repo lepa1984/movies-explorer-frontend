@@ -44,7 +44,7 @@
     font-size: 13px;
     line-height: normal;
 }
-@media (max-width: 768px) {
+@media (max-width: 750px) {
     .footer__title {
         font-size: 12px;
     }

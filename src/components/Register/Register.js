@@ -21,7 +21,7 @@ const Footer = () => (
                             maxLength='40'
                             required
                             placeholder='Виталий'
-                            value='Виталий'
+                            value=''
                         />
                     </label>
                     <label className='register__field'>
@@ -32,8 +32,8 @@ const Footer = () => (
                             id='email-input'
                             type='email'
                             required
-                            placeholder='pochta@yandex.ru'
-                            value='pochta@yandex.ru'
+                            placeholder='example@yandex.ru'
+                            value=''
                         />
                     </label>
                     <label className='register__field'>

@@ -61,7 +61,7 @@
         letter-spacing: -0.48px;
     }
 }
-@media (max-width: 768px) {
+@media (max-width: 750px) {
     .techs {
         padding: 70px 0;
     }

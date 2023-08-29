@@ -75,8 +75,8 @@
 .card__delete::after {
     content: '';
     display: block;
-    width: 16px;
-    height: 2px;
+    width: 10px;
+    height: 1.5px;
     background: #000;
     position: absolute;
     top: 50%;

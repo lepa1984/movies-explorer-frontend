@@ -1,14 +1,10 @@
 .login {
     padding: 70px 0;
-    height: 100%;
     box-sizing: border-box;
 }
 .login .container {
     max-width: 456px;
     width: 100%;
-    display: flex;
-    height: 100%;
-    flex-direction: column;
 }
 .login__logo {
     display: block;
@@ -17,6 +13,7 @@
 .login__logo img {
     width: 38px;
     height: 38px;
+    display: block;
 }
 .login__title {
     color: #000;
@@ -71,7 +68,7 @@
     font-size: 10px;
     line-height: normal;
     margin-top: 6px;
-    margin-bottom: 65px;
+    margin-bottom: 200px;
     opacity: 0;
     visibility: hidden;
 }
@@ -85,7 +82,7 @@
     text-align: center;
     cursor: pointer;
     font-size: 14px;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
     font-weight: 500;
     line-height: normal;
     margin-top: auto;
@@ -109,7 +106,7 @@
     line-height: normal;
     text-decoration: none;
 }
-@media (max-width: 768px) {
+@media (max-width: 750px) {
     .login {
         padding: 56px 0 30px;
     }
@@ -121,7 +118,7 @@
         margin-bottom: 80px;
     }
     .login__error {
-        margin-bottom: 40px;
+        margin-bottom: 330px;
     }
     .login__button {
         font-size: 12px;

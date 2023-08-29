@@ -25,7 +25,7 @@
         min-height: 784px;
     }
 }
-@media (max-width: 768px) {
+@media (max-width: 750px) {
     .promo {
         min-height: 570px;
         background-size: 248px 248px;
