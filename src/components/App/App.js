@@ -64,7 +64,7 @@ function App() {
                 }
             });
     }
-    function handleRegister(name, email, password) {
+    function handleRegister({ name, email, password }) {
         auth.register(name, email, password)
             .then((res) => {
                 setSuccessReg(true);
@@ -76,7 +76,7 @@ function App() {
                 setSuccessReg(false);
             });
     }
-    function handleLogin(email, password) {
+    function handleLogin({ email, password }) {
         auth.login(email, password)
             .then((res) => {
                 if (res) {
