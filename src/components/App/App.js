@@ -17,9 +17,9 @@ function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [savedMovies, setMovies] = useState([]);
     const [currentUser, setCurrentUser] = useState({});
-    const [succesReg, setSuccessReg] = useState(false);
-    const [succesLogin, setSuccessLogin] = useState(false);
-    const [succesEdit, setSuccessEdit] = useState(false);
+    const [successReg, setSuccessReg] = useState(false);
+    const [successLogin, setSuccessLogin] = useState(false);
+    const [successEdit, setSuccessEdit] = useState(false);
     const navigate = useNavigate();
 
     function addToSavedMovies(data) {
@@ -145,7 +145,7 @@ function App() {
                                 <Register
                                     handleRegister={handleRegister}
                                     isLoggedIn={isLoggedIn}
-                                    succesReg={succesReg}
+                                    successReg={successReg}
                                 />
                             )
                         }
@@ -157,7 +157,7 @@ function App() {
                                 <Navigate to='/movies' replace />
                             ) : (
                                 <Login
-                                    succesLogin={succesLogin}
+                                    successLogin={successLogin}
                                     handleLogin={handleLogin}
                                     isLoggedIn={isLoggedIn}
                                 />
@@ -173,7 +173,7 @@ function App() {
                                 isLoggedIn={isLoggedIn}
                                 handleLogout={handleLogout}
                                 handleUpdateUser={handleUpdateUser}
-                                succesEdit={succesEdit}
+                                successEdit={successEdit}
                             />
                         }
                     />

@@ -48,7 +48,7 @@ class Auth {
 }
 
 const auth = new Auth({
-    baseUrl: 'api.lepa1984.nomoredomainsicu.ru',
+    baseUrl: 'https://api.lepa1984.nomoredomainsicu.ru',
 });
 
 export default auth;

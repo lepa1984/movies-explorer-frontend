@@ -54,14 +54,6 @@ const Movies = ({
         localStorage.setItem('allMovies', JSON.stringify(movies));
     }
 
-    useEffect(() => {
-        if (localStorage.getItem('shortMovies') === 'true') {
-            setShortMovies(true);
-        } else {
-            setShortMovies(false);
-        }
-    }, []);
-
     function allFilterMovies(query) {
         localStorage.setItem('movieSearch', query);
         localStorage.setItem('shortMovies', shortMovies);
