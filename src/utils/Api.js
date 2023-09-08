@@ -133,6 +133,6 @@ class Api {
 }
 
 const api = new Api({
-    baseUrl: 'https://lepa1984.nomoredomains.xy.nomoredomains.sbs',
+    baseUrl: 'api.lepa1984.nomoredomainsicu.ru',
 });
 export default api;
