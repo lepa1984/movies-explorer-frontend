@@ -10,20 +10,20 @@ class Auth {
         return Promise.reject(`Ошибка: ${res.status}`);
     }
 
-    async register(email, password) {
-        const res = await fetch(`${this._baseUrl}/signup`, {
+    async register(name, email, password) {
+        const res = await fetch(`${this._baseUrl}/sign-up`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify({ name, email, password }),
         });
         return this._checkResponse(res);
     }
 
     async login(email, password) {
-        const res = await fetch(`${this._baseUrl}/signin`, {
+        const res = await fetch(`${this._baseUrl}/sign-in`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -35,7 +35,7 @@ class Auth {
     }
 
     async checkToken(token) {
-              const res = await fetch(`${this._baseUrl}/users/me`, {
+        const res = await fetch(`${this._baseUrl}/users/me`, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',

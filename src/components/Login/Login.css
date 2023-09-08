@@ -31,6 +31,7 @@
 .login__fields {
     box-sizing: border-box;
     height: 100%;
+    margin-bottom: 222px;
 }
 .login__input {
     border: none;
@@ -68,7 +69,7 @@
     font-size: 10px;
     line-height: normal;
     margin-top: 6px;
-    margin-bottom: 200px;
+
     opacity: 0;
     visibility: hidden;
 }
@@ -90,6 +91,11 @@
 }
 .login__button:hover {
     opacity: 0.8;
+}
+.login__button_disabled {
+    background: #f8f8f8;
+    color: #c2c2c2;
+    cursor: default;
 }
 .login__text {
     margin: 0;
@@ -117,7 +123,7 @@
         text-align: center;
         margin-bottom: 80px;
     }
-    .login__error {
+    .login__fields {
         margin-bottom: 330px;
     }
     .login__button {

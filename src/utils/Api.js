@@ -1,5 +1,5 @@
 class Api {
-    constructor({ baseUrl, headers }) {
+    constructor({ baseUrl }) {
         this.baseUrl = baseUrl;
     }
     _getResponseData(res) {
@@ -9,8 +9,8 @@ class Api {
         return res.json();
     }
 
-    async getCards() {
-        const res = await fetch(`${this.baseUrl}/cards`, {
+    async getMovies() {
+        const res = await fetch(`${this.baseUrl}/movies`, {
             method: 'GET',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('jwt')}`,
@@ -21,32 +21,27 @@ class Api {
     }
     async changeLikeCardStatus(cardId, isLiked) {
         if (isLiked) {
-            const res = await fetch(
-                this.baseUrl + '/cards/' + cardId + '/likes',
-                {
-                    method: 'PUT',
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
-                        'Content-Type': 'application/json',
-                    },
-                }
-            );
-            return this._getResponseData(res);
+            return this.removeLike(cardId);
         } else {
-            const res_2 = await fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
-                method: 'DELETE',
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('jwt')}`,
-                    'Content-Type': 'application/json',
-                },
-            });
-            return this._getResponseData(res_2);
+            return this.addLike(cardId);
         }
     }
-    async getUserInfo() {
+    async getUserInfo(token) {
         const res = await fetch(`${this.baseUrl}/users/me`, {
             method: 'GET',
             headers: {
+                Accept: 'application/json',
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+        });
+        return this._getResponseData(res);
+    }
+    async getProfileInfo() {
+        const res = await fetch(`${this.baseUrl}/users/me`, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
                 Authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json',
             },
@@ -54,23 +49,42 @@ class Api {
         return this._getResponseData(res);
     }
 
-    async newCard({ name, link }) {
-        const res = await fetch(`${this.baseUrl}/cards`, {
+    async saveMovie(data) {
+        const res = await fetch(`${this.baseUrl}/movies`, {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                name,
-                link,
+                country: data.country,
+                director: data.director,
+                duration: data.duration,
+                year: data.year,
+                description: data.description,
+                image: data.image,
+                trailerLink: data.trailerLink,
+                thumbnail: data.thumbnail,
+                movieId: data.id,
+                nameRU: data.nameRU,
+                nameEN: data.nameEN,
             }),
         });
         return this._getResponseData(res);
     }
 
-    async deleteCards(cardId) {
-        const res = await fetch(`${this.baseUrl}/cards/${cardId}`, {
+    async getSavedMovies() {
+        const res = await fetch(`${this.baseUrl}/movies`, {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+                'Content-Type': 'application/json',
+            },
+        });
+        return this._getJson(res);
+    }
+    async deleteMovies(cardId) {
+        const res = await fetch(`${this.baseUrl}/movies/${cardId}`, {
             method: 'DELETE',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('jwt')}`,
@@ -89,28 +103,14 @@ class Api {
             },
             body: JSON.stringify({
                 name: data.name,
-                about: data.about,
-            }),
-        });
-        return this._getResponseData(res);
-    }
-
-    async updateAvatarInfo(data) {
-        const res = await fetch(`${this.baseUrl}/users/me/avatar`, {
-            method: 'PATCH',
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('jwt')}`,
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                avatar: data.avatar,
+                email: data.email,
             }),
         });
         return this._getResponseData(res);
     }
 
     async addLike(cardId) {
-        const res = await fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
+        const res = await fetch(`${this.baseUrl}/movies/${cardId}`, {
             method: 'PUT',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('jwt')}`,
@@ -121,7 +121,7 @@ class Api {
     }
 
     async removeLike(cardId) {
-        const res = await fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
+        const res = await fetch(`${this.baseUrl}/movies/${cardId}`, {
             method: 'DELETE',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('jwt')}`,

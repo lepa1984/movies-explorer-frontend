@@ -1,17 +1,68 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
-function SavedMovies() {
+function SavedMovies({ isLoggedIn, deleteSavedMovies, savedMovies }) {
+    const [filteredMovies, setFilteredMovies] = useState(savedMovies);
+    const [searchRequest, setSearchRequest] = useState('');
+    const [shortMovies, setShortMovies] = useState(false);
+    const [notFound, setNotFound] = useState(false);
+
+    function searchAndFilterMovies(request) {
+        setSearchRequest(request);
+    }
+
+    function handleShortMovieToggle() {
+        setShortMovies(!shortMovies);
+    }
+
+    useEffect(() => {
+        if (filteredMovies.length === 0) {
+            setNotFound(true);
+        } else {
+            setNotFound(false);
+        }
+    }, [filteredMovies]);
+
+    useEffect(() => {
+        const movieList = filterMovies(savedMovies, searchRequest);
+        setFilteredMovies(
+            shortMovies ? filterShortMovies(movieList) : movieList
+        );
+    }, [savedMovies, shortMovies, searchRequest]);
+    function filterShortMovies(movies) {
+        return movies.filter((movie) => movie.duration <= 40);
+    }
+    function filterMovies(movies, query) {
+        const moviesQuery = movies.filter((movie) => {
+            const movieRU = String(movie.nameRU).toLowerCase().trim();
+            const movieEN = String(movie.nameEN).toLowerCase().trim();
+            const userQuery = query.toLowerCase().trim();
+            return (
+                movieRU.indexOf(userQuery) !== -1 ||
+                movieEN.indexOf(userQuery) !== -1
+            );
+        });
+        return moviesQuery;
+    }
     return (
         <>
-            <Header />
+            <Header isLoggedIn={isLoggedIn} />
             <main>
-                <SearchForm />
-                <MoviesCardList isSavedMovies={true} />
+                <SearchForm
+                    onFilterMovies={handleShortMovieToggle}
+                    searchAndFilterMovies={searchAndFilterMovies}
+                />
+                <MoviesCardList
+                    movies={filteredMovies}
+                    isSavedMovies={true}
+                    savedMovies={savedMovies}
+                    onRemoveMovie={deleteSavedMovies}
+                    notFound={notFound}
+                />
             </main>
             <Footer />
         </>
