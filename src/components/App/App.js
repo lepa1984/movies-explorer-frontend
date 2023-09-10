@@ -66,7 +66,7 @@ function App() {
     }
     function handleRegister({ name, email, password }) {
         auth.register(name, email, password)
-            .then((res) => {
+            .then(() => {
                 setSuccessReg(true);
                 handleLogin({ email, password });
                 navigate('/sign-in', { replace: true });
