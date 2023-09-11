@@ -65,8 +65,9 @@ const Movies = ({
             const movies = JSON.parse(localStorage.getItem('allMovies'));
             updateFilteredMoviesList(movies, query, shortMovies);
         } else {
+            const token = localStorage.getItem('jwt');
             moviesApi
-                .getMovies()
+                .getMovies(token)
                 .then((moviesData) => {
                     updateFilteredMoviesList(moviesData, query, shortMovies);
                 })

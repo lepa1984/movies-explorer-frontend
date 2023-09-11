@@ -1,6 +1,6 @@
 class MoviesApi {
-    constructor({ baseUrl }) {
-        this.baseUrl = baseUrl;
+    constructor() {
+        this.baseUrl = 'https://api.nomoreparties.co/beatfilm-movies';
     }
 
     _getResponseData(res) {
@@ -21,8 +21,6 @@ class MoviesApi {
     }
 }
 
-const moviesApi = new MoviesApi({
-    baseUrl: 'https://api.nomoreparties.co/beatfilm-movies',
-});
+const moviesApi = new MoviesApi();
 
 export default moviesApi;

@@ -49,16 +49,13 @@ function App() {
                 setSuccessLogin(false);
             });
     }
-    function addToSavedMovies(movie) {
-        api.saveMovie(movie)
+    function addToSavedMovies(data) {
+        api.saveMovie(data)
             .then((newMovie) => {
                 setMovies([newMovie, ...savedMovies]);
             })
             .catch((err) => {
                 console.log(`Ошибка: ${err}`);
-                if (err === 'Error: 401') {
-                    handleLogout();
-                }
             });
     }
 
@@ -71,9 +68,6 @@ function App() {
             })
             .catch((err) => {
                 console.log(`Ошибка: ${err}`);
-                if (err === 'Error: 401') {
-                    handleLogout();
-                }
             });
     }
     function handleUpdateUser(userInfo) {
@@ -84,9 +78,6 @@ function App() {
             })
             .catch((err) => {
                 console.log(`Ошибка: ${err}`);
-                if (err === 'Error: 401') {
-                    handleLogout();
-                }
             });
     }
 
@@ -119,7 +110,7 @@ function App() {
         localStorage.removeItem('shortMovies');
         const jwt = localStorage.getItem('jwt');
         if (isLoggedIn && jwt) {
-            Promise.all([api.getProfileInfo(), api.getSavedMovies()])
+            Promise.all([api.getProfileInfo(jwt), api.getSavedMovies(jwt)])
                 .then(([user, movies]) => {
                     setCurrentUser({ name: user.name, email: user.email });
                     setMovies(movies.reverse());

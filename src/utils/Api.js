@@ -1,6 +1,6 @@
 class Api {
-    constructor({ baseUrl }) {
-        this.baseUrl = baseUrl;
+    constructor() {
+        this.baseUrl = 'https://api.lepa1984.nomoredomainsicu.ru';
     }
     _getResponseData(res) {
         if (!res.ok) {
@@ -9,11 +9,11 @@ class Api {
         return res.json();
     }
 
-    async getMovies() {
+    async getMovies(token) {
         const res = await fetch(`${this.baseUrl}/movies`, {
             method: 'GET',
             headers: {
-                Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+                Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
             },
         });
@@ -37,12 +37,12 @@ class Api {
         });
         return this._getResponseData(res);
     }
-    async getProfileInfo() {
+    async getProfileInfo(token) {
         const res = await fetch(`${this.baseUrl}/users/me`, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
-                Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+                Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
             },
         });
@@ -53,7 +53,7 @@ class Api {
         const res = await fetch(`${this.baseUrl}/movies`, {
             method: 'POST',
             headers: {
-                Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+                authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
@@ -73,11 +73,11 @@ class Api {
         return this._getResponseData(res);
     }
 
-    async getSavedMovies() {
+    async getSavedMovies(token) {
         const res = await fetch(`${this.baseUrl}/movies`, {
             method: 'GET',
             headers: {
-                Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+                Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
             },
         });
@@ -87,7 +87,7 @@ class Api {
         const res = await fetch(`${this.baseUrl}/movies/${cardId}`, {
             method: 'DELETE',
             headers: {
-                Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+                authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json',
             },
         });
@@ -98,7 +98,7 @@ class Api {
         const res = await fetch(`${this.baseUrl}/users/me`, {
             method: 'PATCH',
             headers: {
-                Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+                authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
@@ -108,31 +108,7 @@ class Api {
         });
         return this._getResponseData(res);
     }
-
-    async addLike(cardId) {
-        const res = await fetch(`${this.baseUrl}/movies/${cardId}`, {
-            method: 'PUT',
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('jwt')}`,
-                'Content-Type': 'application/json',
-            },
-        });
-        return this._getResponseData(res);
-    }
-
-    async removeLike(cardId) {
-        const res = await fetch(`${this.baseUrl}/movies/${cardId}`, {
-            method: 'DELETE',
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('jwt')}`,
-                'Content-Type': 'application/json',
-            },
-        });
-        return this._getResponseData(res);
-    }
 }
 
-const api = new Api({
-    baseUrl: 'https://api.lepa1984.nomoredomainsicu.ru',
-});
+const api = new Api();
 export default api;

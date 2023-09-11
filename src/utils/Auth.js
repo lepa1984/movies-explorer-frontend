@@ -1,6 +1,6 @@
 class Auth {
-    constructor({ baseUrl }) {
-        this._baseUrl = baseUrl;
+    constructor() {
+        this._baseUrl = 'https://api.lepa1984.nomoredomainsicu.ru';
     }
 
     _checkResponse(res) {
@@ -23,6 +23,7 @@ class Auth {
     }
 
     async login(email, password) {
+        console.log(email, password);
         const res = await fetch(`${this._baseUrl}/sign-in`, {
             method: 'POST',
             headers: {
@@ -47,8 +48,6 @@ class Auth {
     }
 }
 
-const auth = new Auth({
-    baseUrl: 'https://api.lepa1984.nomoredomainsicu.ru',
-});
+const auth = new Auth();
 
 export default auth;
