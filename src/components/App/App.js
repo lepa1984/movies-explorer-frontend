@@ -22,6 +22,33 @@ function App() {
     const [successEdit, setSuccessEdit] = useState(false);
     const navigate = useNavigate();
 
+    function handleRegister({ name, email, password }) {
+        auth.register(name, email, password)
+            .then(() => {
+                setSuccessReg(true);
+                handleLogin({ email, password });
+                navigate('/sign-in', { replace: true });
+            })
+            .catch((err) => {
+                console.log(`Ошибка: ${err}`);
+                setSuccessReg(false);
+            });
+    }
+    function handleLogin({ email, password }) {
+        auth.login(email, password)
+            .then((res) => {
+                if (res) {
+                    setSuccessLogin(true);
+                    localStorage.setItem('jwt', res.token);
+                    setIsLoggedIn(true);
+                    navigate('/movies', { replace: true });
+                }
+            })
+            .catch((err) => {
+                console.log(`Ошибка: ${err}`);
+                setSuccessLogin(false);
+            });
+    }
     function addToSavedMovies(data) {
         api.saveMovie({
             data,
@@ -64,33 +91,7 @@ function App() {
                 }
             });
     }
-    function handleRegister({ name, email, password }) {
-        auth.register(name, email, password)
-            .then(() => {
-                setSuccessReg(true);
-                handleLogin({ email, password });
-                navigate('/sign-in', { replace: true });
-            })
-            .catch((err) => {
-                console.log(`Ошибка: ${err}`);
-                setSuccessReg(false);
-            });
-    }
-    function handleLogin({ email, password }) {
-        auth.login(email, password)
-            .then((res) => {
-                if (res) {
-                    setSuccessLogin(true);
-                    localStorage.setItem('jwt', res.token);
-                    setIsLoggedIn(true);
-                    navigate('/movies', { replace: true });
-                }
-            })
-            .catch((err) => {
-                console.log(`Ошибка: ${err}`);
-                setSuccessLogin(false);
-            });
-    }
+
     function handleLogout() {
         localStorage.clear();
         setIsLoggedIn(false);
@@ -106,11 +107,9 @@ function App() {
         const jwt = localStorage.getItem('jwt');
         if (jwt) {
             api.getUserInfo(jwt)
-                .then((user) => {
-                    if (user) {
-                        localStorage.removeItem('allMovies');
-                        setIsLoggedIn(true);
-                    }
+                .then((res) => {
+                    localStorage.removeItem('allMovies');
+                    setIsLoggedIn(true);
                 })
                 .catch((err) => {
                     console.log(`Ошибка: ${err}`);

@@ -2,12 +2,15 @@ import './Login.css';
 import { Link } from 'react-router-dom';
 import Logo from '../../images/logo.svg';
 import useForm from '../../hooks/useForm';
-const Login = ({ handleLogin, setServerError }) => {
+const Login = ({ handleLogin }) => {
     const { values, handleChange, errors, isValid } = useForm({});
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        handleLogin(values.email, values.password);
+        handleLogin({
+            email: values.email,
+            password: values.password,
+        });
     };
 
     return (
