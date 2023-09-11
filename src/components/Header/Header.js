@@ -16,7 +16,7 @@ function Header({ isLoggedIn }) {
                 <Link to='/' className='header__logo'>
                     <img src={Logo} alt='логотип' />
                 </Link>
-                {isLoggedIn ? <AuthNavigation /> : <Navigation />}
+                {isLoggedIn ? <Navigation /> : <AuthNavigation />}
             </div>
         </header>
     );
