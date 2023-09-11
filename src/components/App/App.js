@@ -49,10 +49,8 @@ function App() {
                 setSuccessLogin(false);
             });
     }
-    function addToSavedMovies(data) {
-        api.saveMovie({
-            data,
-        })
+    function addToSavedMovies(movie) {
+        api.saveMovie(movie)
             .then((newMovie) => {
                 setMovies([newMovie, ...savedMovies]);
             })

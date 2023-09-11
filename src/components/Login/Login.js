@@ -4,7 +4,6 @@ import Logo from '../../images/logo.svg';
 import useForm from '../../hooks/useForm';
 const Login = ({ handleLogin }) => {
     const { values, handleChange, errors, isValid } = useForm({});
-
     const handleSubmit = (e) => {
         e.preventDefault();
         handleLogin({
@@ -48,7 +47,7 @@ const Login = ({ handleLogin }) => {
                                 id='password-input'
                                 type='password'
                                 required
-                                value={values.email || ''}
+                                value={values.password || ''}
                                 onChange={handleChange}
                             />
                             <p className='login__error'>{errors.password}</p>

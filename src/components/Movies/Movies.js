@@ -37,7 +37,11 @@ const Movies = ({
     function handleShortMovieToggle() {
         setShortMovies(!shortMovies);
         if (!shortMovies) {
-            setFilteredMovies(filterShortMovies(initialMovies));
+            if (filterShortMovies(initialMovies).length === 0) {
+                setFilteredMovies(filterShortMovies(initialMovies));
+            } else {
+                setFilteredMovies(filterShortMovies(initialMovies));
+            }
         } else {
             setFilteredMovies(initialMovies);
         }
@@ -73,16 +77,12 @@ const Movies = ({
     }
 
     useEffect(() => {
-        if (localStorage.getItem('movieSearch')) {
-            if (filterMovies.length === 0) {
-                console.log('Не найдено фильмов');
-            } else {
-                console.log('вот фильмы');
-            }
+        if (localStorage.getItem('shortMovies') === 'true') {
+            setShortMovies(true);
         } else {
-            console.log('вот фильмы');
+            setShortMovies(false);
         }
-    }, [filteredMovies]);
+    }, []);
 
     useEffect(() => {
         if (localStorage.getItem('movies')) {
@@ -103,6 +103,7 @@ const Movies = ({
                     allFilterMovies={allFilterMovies}
                     shortMovies={shortMovies}
                     onFilterMovies={handleShortMovieToggle}
+                    filteredMovies={filteredMovies}
                 />
                 {isLoading ? (
                     <Preloader />

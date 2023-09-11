@@ -6,20 +6,13 @@ function MoviesCard({
     savedMovies,
     addToSavedMovies,
     deleteSavedMovies,
+    isSavedMovies,
+    saved,
 }) {
-    const { pathname } = useLocation();
-    const isSaveButton = pathname === '/movies';
-    const isDeleteButton = pathname === '/saved-movies';
+    const imageUrl = isSavedMovies
+        ? movie.image
+        : `https://api.nomoreparties.co/${movie.image.url}`;
 
-    const imageUrl = movie.image.url
-        ? `https://api.nomoreparties.co/${movie.image.url}`
-        : movie.image;
-    const isSavedFilm = savedMovies
-        ? savedMovies.some((i) => i.movieId === movie.id)
-        : false;
-    const infoSaveFilm = savedMovies
-        ? savedMovies.find((i) => i.movieId === movie.id)
-        : null;
     function converterMinuteHour(min) {
         let hours = Math.floor(min / 60);
         let minutes = min % 60;
@@ -30,36 +23,39 @@ function MoviesCard({
             return `${hours}ч ${minutes > 0 ? `${minutes}м` : ''}`;
         }
     }
-
+    function onClickMovie() {
+        if (saved) {
+            deleteSavedMovies(
+                savedMovies.filter((m) => m.movieId === movie.id)[0]
+            );
+        } else {
+            addToSavedMovies(movie);
+        }
+    }
     return (
         <article className='card'>
-            <img className='card__image' src={imageUrl} alt='Изображение' />
+            <img className='card__image' src={imageUrl} alt={movie.nameRU} />
             <div className='card__wrapper'>
                 <h3 className='card__title' title={movie.nameRU}>
                     {movie.nameRU}
                 </h3>
-                {/* {isSaveButton && (
-                    <button
-                        className={`card__button ${
-                            isSavedFilm ? 'card__like_active' : 'card__like'
-                        }`}
-                        type='button'
-                        aria-label='Сохранить'
-                        onClick={addToSavedMovies(
-                            movie,
-                            isSavedFilm,
-                            infoSaveFilm
-                        )}
-                    />
-                )}
-                {isDeleteButton && (
+                {isSavedMovies ? (
                     <button
                         type='button'
                         className='card__button card__delete'
                         aria-label='Удалить'
                         onClick={deleteSavedMovies(movie)}
                     />
-                )} */}
+                ) : (
+                    <button
+                        className={`card__button ${
+                            isSavedMovies ? 'card__like_active' : 'card__like'
+                        }`}
+                        type='button'
+                        aria-label='Сохранить'
+                        onClick={onClickMovie}
+                    />
+                )}
 
                 <p className='card__duration'>
                     {converterMinuteHour(movie.duration)}

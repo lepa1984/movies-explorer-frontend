@@ -8,7 +8,7 @@ function Profile({ isLoggedIn, handleLogout, handleUpdateUser }) {
     const currentUser = useContext(CurrentUserContext);
     const [lastDetails, setLastDetails] = useState(false);
 
-    function onSubmituseForm(e) {
+    function onSubmitUseForm(e) {
         e.preventDefault();
         handleUpdateUser({
             name: values.name,
@@ -25,7 +25,7 @@ function Profile({ isLoggedIn, handleLogout, handleUpdateUser }) {
         } else {
             setLastDetails(false);
         }
-    }, [values]);
+    }, [currentUser.email, currentUser.name, values]);
 
     useEffect(() => {
         if (currentUser) {
@@ -40,8 +40,10 @@ function Profile({ isLoggedIn, handleLogout, handleUpdateUser }) {
                     <h1 className='profile__title'>
                         Привет, {currentUser.name}!
                     </h1>
-                    <form className='profile__form' onSubmit={onSubmituseForm}>
+                    <form className='profile__form' onSubmit={onSubmitUseForm}>
                         <label className='profile__label'>
+                            {' '}
+                            <p className='profile__caption'>Имя</p>
                             <input
                                 className='profile__input'
                                 type='text'
@@ -50,9 +52,10 @@ function Profile({ isLoggedIn, handleLogout, handleUpdateUser }) {
                                 value={values.name || ''}
                                 onChange={handleChange}
                             />
-                            <p className='profile__caption'>Виталий</p>
                         </label>
                         <label className='profile__label'>
+                            {' '}
+                            <p className='profile__caption'>Почта</p>
                             <input
                                 className='profile__input'
                                 type='text'
@@ -61,7 +64,6 @@ function Profile({ isLoggedIn, handleLogout, handleUpdateUser }) {
                                 onChange={handleChange}
                                 readOnly
                             />
-                            <p className='profile__caption'>pochta@yandex.ru</p>
                         </label>
                     </form>
                     <div className='profile__buttons'>
@@ -69,9 +71,9 @@ function Profile({ isLoggedIn, handleLogout, handleUpdateUser }) {
                             className={
                                 isValid && !lastDetails
                                     ? 'profile__button'
-                                    : 'profile__button_disabled'
+                                    : 'profile__button_saved'
                             }
-                            onClick={onSubmituseForm}
+                            onClick={onSubmitUseForm}
                         >
                             Редактировать
                         </button>
