@@ -8,7 +8,7 @@ function MoviesCardList({
     isSavedMovies,
     savedMovies,
     handleLikeMovie,
-    onRemoveMovie,
+    addToSavedMovies,
 }) {
     const [displayedMovies, setDisplayedMovies] = useState(0);
     const { pathname } = useLocation();
@@ -33,11 +33,11 @@ function MoviesCardList({
     function expandMoviesDisplay() {
         const display = window.innerWidth;
         if (display >= 1280) {
-            setDisplayedMovies(displayedMovies + 3);
+            setDisplayedMovies(displayedMovies + 4);
         } else if (display >= 768) {
             setDisplayedMovies(displayedMovies + 2);
         } else {
-            setDisplayedMovies(displayedMovies + 2);
+            setDisplayedMovies(displayedMovies + 1);
         }
     }
 
@@ -75,7 +75,7 @@ function MoviesCardList({
                                     movie={movie}
                                     handleLikeMovie={handleLikeMovie}
                                     isSavedMovies={isSavedMovies}
-                                    onRemoveMovie={onRemoveMovie}
+                                    addToSavedMovies={addToSavedMovies}
                                     savedMovies={savedMovies}
                                 />
                             );
@@ -98,7 +98,7 @@ function MoviesCardList({
                                         movie={movie}
                                         handleLikeMovie={handleLikeMovie}
                                         isSavedMovies={isSavedMovies}
-                                        onRemoveMovie={onRemoveMovie}
+                                        addToSavedMovies={addToSavedMovies}
                                         savedMovies={savedMovies}
                                     />
                                 );

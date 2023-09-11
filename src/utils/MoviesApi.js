@@ -14,7 +14,6 @@ class MoviesApi {
         const res = await fetch(`${this.baseUrl}`, {
             method: 'GET',
             headers: {
-                Authorization: `Bearer ${localStorage.getItem('jwt')}`,
                 'Content-Type': 'application/json',
             },
         });
