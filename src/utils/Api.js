@@ -88,7 +88,7 @@ class Api {
             method: 'DELETE',
             headers: {
                 Accept: 'application/json',
-                authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
             },
         });

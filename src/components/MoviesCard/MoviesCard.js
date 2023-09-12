@@ -1,5 +1,5 @@
 import './MoviesCard.css';
- 
+
 import React from 'react';
 function MoviesCard({
     movie,
@@ -23,6 +23,9 @@ function MoviesCard({
             return `${hours}ч ${minutes > 0 ? `${minutes}м` : ''}`;
         }
     }
+    function onRemoveMovie() {
+        deleteSavedMovies(movie);
+    }
     function onClickMovie() {
         if (saved) {
             deleteSavedMovies(
@@ -43,7 +46,7 @@ function MoviesCard({
                     <button
                         className='card__button card__delete'
                         type='button'
-                        onClick={deleteSavedMovies(movie)}
+                        onClick={onRemoveMovie}
                     />
                 ) : saved && !isSavedMovies ? (
                     <button

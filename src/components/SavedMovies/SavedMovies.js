@@ -13,7 +13,7 @@ function SavedMovies({ isLoggedIn, deleteSavedMovies, savedMovies }) {
     function filterShortMovies(movies) {
         return movies.filter((movie) => movie.duration <= 40);
     }
-    function searchAndFilterMovies(request) {
+    function allFilterMovies(request) {
         setSearchRequest(request);
     }
 
@@ -54,7 +54,9 @@ function SavedMovies({ isLoggedIn, deleteSavedMovies, savedMovies }) {
             <main>
                 <SearchForm
                     onFilterMovies={handleShortMovieToggle}
-                    searchAndFilterMovies={searchAndFilterMovies}
+                    allFilterMovies={allFilterMovies}
+                    filteredMovies={filteredMovies}
+                    notFound={notFound}
                 />
                 <MoviesCardList
                     movies={filteredMovies}

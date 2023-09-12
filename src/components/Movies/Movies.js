@@ -69,6 +69,10 @@ const Movies = ({
                 .getMovies()
                 .then((moviesData) => {
                     updateFilteredMoviesList(moviesData, query, shortMovies);
+                    localStorage.setItem(
+                        'allMovies',
+                        JSON.stringify(moviesData)
+                    );
                 })
                 .catch((err) => {
                     console.log(err);
@@ -113,6 +117,7 @@ const Movies = ({
                     shortMovies={shortMovies}
                     onFilterMovies={handleShortMovieToggle}
                     filteredMovies={filteredMovies}
+                    notFound={notFound}
                 />
                 {isLoading ? (
                     <Preloader />
@@ -123,6 +128,7 @@ const Movies = ({
                         savedMovies={savedMovies}
                         addToSavedMovies={addToSavedMovies}
                         deleteSavedMovies={deleteSavedMovies}
+                        notFound={notFound}
                     />
                 )}
             </main>

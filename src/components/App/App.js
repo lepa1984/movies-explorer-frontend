@@ -22,6 +22,35 @@ function App() {
     const [successEdit, setSuccessEdit] = useState(false);
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const jwt = localStorage.getItem('jwt');
+        if (jwt) {
+            api.getUserInfo(jwt)
+                .then((res) => {
+                    localStorage.removeItem('allMovies');
+                    setIsLoggedIn(true);
+                })
+                .catch((err) => {
+                    console.log(`Ошибка: ${err}`);
+                });
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.removeItem('shortMovies');
+        const jwt = localStorage.getItem('jwt');
+        if (isLoggedIn && jwt) {
+            Promise.all([api.getProfileInfo(jwt), api.getSavedMovies(jwt)])
+                .then(([user, movies]) => {
+                    setCurrentUser({ name: user.name, email: user.email });
+                    setMovies(movies.reverse());
+                })
+                .catch((err) => {
+                    console.log(`Ошибка: ${err}`);
+                    console.log(err.response);
+                });
+        }
+    }, [isLoggedIn]);
     function handleRegister({ name, email, password }) {
         auth.register(name, email, password)
             .then(() => {
@@ -94,35 +123,6 @@ function App() {
         navigate('/');
     }
 
-    useEffect(() => {
-        const jwt = localStorage.getItem('jwt');
-        if (jwt) {
-            api.getUserInfo(jwt)
-                .then((res) => {
-                    localStorage.removeItem('allMovies');
-                    setIsLoggedIn(true);
-                })
-                .catch((err) => {
-                    console.log(`Ошибка: ${err}`);
-                });
-        }
-    }, []);
-
-    useEffect(() => {
-        localStorage.removeItem('shortMovies');
-        const jwt = localStorage.getItem('jwt');
-        if (isLoggedIn && jwt) {
-            Promise.all([api.getProfileInfo(jwt), api.getSavedMovies(jwt)])
-                .then(([user, movies]) => {
-                    setCurrentUser({ name: user.name, email: user.email });
-                    setMovies(movies.reverse());
-                })
-                .catch((err) => {
-                    console.log(`Ошибка: ${err}`);
-                    console.log(err.response);
-                });
-        }
-    }, [isLoggedIn]);
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <div className='page'>
