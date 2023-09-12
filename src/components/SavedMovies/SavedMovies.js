@@ -59,9 +59,9 @@ function SavedMovies({ isLoggedIn, deleteSavedMovies, savedMovies }) {
                 <MoviesCardList
                     movies={filteredMovies}
                     isSavedMovies={true}
-                    savedMovies={savedMovies}
-                    onRemoveMovie={deleteSavedMovies}
                     notFound={notFound}
+                    savedMovies={savedMovies}
+                    deleteSavedMovies={deleteSavedMovies}
                 />
             </main>
             <Footer />

@@ -49,11 +49,11 @@ class Api {
         return this._getResponseData(res);
     }
 
-    async saveMovie(data) {
+    async saveMovie(data, token) {
         const res = await fetch(`${this.baseUrl}/movies`, {
             method: 'POST',
             headers: {
-                authorization: `Bearer ${localStorage.getItem('jwt')}`,
+                authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
@@ -62,9 +62,9 @@ class Api {
                 duration: data.duration,
                 year: data.year,
                 description: data.description,
-                image: data.image,
+                image: `https://api.nomoreparties.co/${data.image.url}`,
                 trailerLink: data.trailerLink,
-                thumbnail: data.thumbnail,
+                thumbnail: `https://api.nomoreparties.co/${data.image.formats.thumbnail.url}`,
                 movieId: data.id,
                 nameRU: data.nameRU,
                 nameEN: data.nameEN,
@@ -81,7 +81,7 @@ class Api {
                 'Content-Type': 'application/json',
             },
         });
-        return this._getJson(res);
+        return this._getResponseData(res);
     }
     async deleteMovies(cardId) {
         const res = await fetch(`${this.baseUrl}/movies/${cardId}`, {

@@ -7,7 +7,7 @@ function MoviesCardList({
     movies,
     isSavedMovies,
     savedMovies,
-    handleLikeMovie,
+    deleteSavedMovies,
     addToSavedMovies,
 }) {
     const [displayedMovies, setDisplayedMovies] = useState(0);
@@ -73,7 +73,7 @@ function MoviesCardList({
                                     )}
                                     movies={movies}
                                     movie={movie}
-                                    handleLikeMovie={handleLikeMovie}
+                                    deleteSavedMovies={deleteSavedMovies}
                                     isSavedMovies={isSavedMovies}
                                     addToSavedMovies={addToSavedMovies}
                                     savedMovies={savedMovies}
@@ -96,7 +96,7 @@ function MoviesCardList({
                                         )}
                                         movies={movies}
                                         movie={movie}
-                                        handleLikeMovie={handleLikeMovie}
+                                        deleteSavedMovies={deleteSavedMovies}
                                         isSavedMovies={isSavedMovies}
                                         addToSavedMovies={addToSavedMovies}
                                         savedMovies={savedMovies}

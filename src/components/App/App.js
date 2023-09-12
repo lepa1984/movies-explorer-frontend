@@ -50,7 +50,8 @@ function App() {
             });
     }
     function addToSavedMovies(data) {
-        api.saveMovie(data)
+        const jwt = localStorage.getItem('jwt');
+        api.saveMovie(data, jwt)
             .then((newMovie) => {
                 setMovies([newMovie, ...savedMovies]);
             })
@@ -117,6 +118,7 @@ function App() {
                 })
                 .catch((err) => {
                     console.log(`Ошибка: ${err}`);
+                    console.log(err.response);
                 });
         }
     }, [isLoggedIn]);

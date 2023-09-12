@@ -18,7 +18,7 @@ const Movies = ({
     const [shortMovies, setShortMovies] = useState(false);
     const [initialMovies, setInitialMovies] = useState([]);
     const [filteredMovies, setFilteredMovies] = useState([]);
-
+    const [notFound, setNotFound] = useState(false);
     function filterShortMovies(movies) {
         return movies.filter((movie) => movie.duration <= 40);
     }
@@ -65,9 +65,8 @@ const Movies = ({
             const movies = JSON.parse(localStorage.getItem('allMovies'));
             updateFilteredMoviesList(movies, query, shortMovies);
         } else {
-            const token = localStorage.getItem('jwt');
             moviesApi
-                .getMovies(token)
+                .getMovies()
                 .then((moviesData) => {
                     updateFilteredMoviesList(moviesData, query, shortMovies);
                 })
@@ -96,6 +95,15 @@ const Movies = ({
             }
         }
     }, []);
+    useEffect(() => {
+        if (localStorage.getItem('movieSearch')) {
+            if (filteredMovies.length === 0) {
+                setNotFound(true);
+            } else {
+                setNotFound(false);
+            }
+        }
+    }, [filteredMovies, notFound]);
     return (
         <>
             <Header isLoggedIn={isLoggedIn} />
