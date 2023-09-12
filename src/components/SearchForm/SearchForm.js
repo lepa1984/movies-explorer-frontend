@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './SearchForm.css';
-
-const SearchForm = ({ isShortMovies, allFilterMovies, onFilterMovies }) => {
+import { useLocation } from 'react-router-dom';
+const SearchForm = ({
+    isShortMovies,
+    allFilterMovies,
+    onFilterMovies,
+    notFound,
+}) => {
+    const location = useLocation();
     const [searchRequest, setSearchRequest] = useState('');
     const [searchError, setSearchError] = useState(false);
 
@@ -20,11 +26,14 @@ const SearchForm = ({ isShortMovies, allFilterMovies, onFilterMovies }) => {
     }
 
     useEffect(() => {
-        if (localStorage.getItem('movieSearch')) {
+        if (
+            localStorage.getItem('movieSearch') &&
+            location.pathname === '/movies'
+        ) {
             const localSearchRequest = localStorage.getItem('movieSearch');
             setSearchRequest(localSearchRequest);
         }
-    }, []);
+    }, [location]);
 
     return (
         <section className='search-form'>
@@ -60,6 +69,15 @@ const SearchForm = ({ isShortMovies, allFilterMovies, onFilterMovies }) => {
                         <p>Короткометражки</p>
                     </label>
                 </form>
+                {searchError ? (
+                    <span className='search__error'>
+                        Нужно ввести ключевое слово!
+                    </span>
+                ) : notFound ? (
+                    <span className='search__error'>Ничего не найдено!</span>
+                ) : (
+                    ''
+                )}
             </div>
         </section>
     );

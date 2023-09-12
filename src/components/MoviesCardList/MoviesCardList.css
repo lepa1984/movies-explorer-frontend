@@ -6,11 +6,17 @@
     border-top: 1px solid #e8e8e8;
     display: grid;
     gap: 34px 20px;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
 }
 @media (max-width: 1025px) {
     .movies-cards__list {
         gap: 36px 30px;
         padding-top: 50px;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (max-width: 750px) {
+    .movies-cards__list {
+        grid-template-columns: repeat(2, 1fr);
     }
 }

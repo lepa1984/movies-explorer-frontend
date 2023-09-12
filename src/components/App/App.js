@@ -61,10 +61,11 @@ function App() {
     }
 
     function deleteSavedMovies(movie) {
-        api.deleteMovies(movie._id)
+        const jwt = localStorage.getItem('jwt');
+        api.deleteMovies(movie._id, jwt)
             .then((res) => {
-                setMovies((movie) =>
-                    movie.filter((item) => item._id !== movie._id)
+                setMovies((state) =>
+                    state.filter((item) => item._id !== movie._id)
                 );
             })
             .catch((err) => {

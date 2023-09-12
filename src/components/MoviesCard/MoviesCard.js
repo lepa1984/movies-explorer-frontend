@@ -1,5 +1,5 @@
 import './MoviesCard.css';
-import { useLocation } from 'react-router-dom';
+ 
 import React from 'react';
 function MoviesCard({
     movie,
@@ -41,22 +41,23 @@ function MoviesCard({
                 </h3>
                 {isSavedMovies ? (
                     <button
-                        type='button'
                         className='card__button card__delete'
-                        aria-label='Удалить'
+                        type='button'
                         onClick={deleteSavedMovies(movie)}
+                    />
+                ) : saved && !isSavedMovies ? (
+                    <button
+                        className='card__button card__like card__like_active'
+                        type='button'
+                        onClick={onClickMovie}
                     />
                 ) : (
                     <button
-                        className={`card__button ${
-                            isSavedMovies ? 'card__like_active' : 'card__like'
-                        }`}
-                        type='button'
-                        aria-label='Сохранить'
+                        className='card__button card__like'
                         onClick={onClickMovie}
-                    />
+                        type='button'
+                    ></button>
                 )}
-
                 <p className='card__duration'>
                     {converterMinuteHour(movie.duration)}
                 </p>

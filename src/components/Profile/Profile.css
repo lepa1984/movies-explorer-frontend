@@ -29,7 +29,11 @@
     border: none;
     background: transparent;
     outline: none;
-    width: 100%;
+    width: fit-content;
+    text-align: right;
+    color: #000;
+    font-size: 11px;
+    line-height: normal;
 }
 .profile__input::placeholder {
     color: #000;
@@ -51,6 +55,24 @@
 
     line-height: normal;
     cursor: pointer;
+}
+.profile__button-save {
+    max-width: 410px;
+    margin: 0 auto;
+    border-radius: 3px;
+    background: #3456f3;
+    width: 100%;
+    padding: 14px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+
+    font-weight: 500;
+    line-height: normal;
+}
+.profile__button-save:hover {
+    opacity: 0.8;
 }
 .profile__button_logout {
     color: #ee3465;

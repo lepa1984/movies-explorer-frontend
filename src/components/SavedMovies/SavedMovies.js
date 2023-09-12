@@ -10,7 +10,9 @@ function SavedMovies({ isLoggedIn, deleteSavedMovies, savedMovies }) {
     const [searchRequest, setSearchRequest] = useState('');
     const [shortMovies, setShortMovies] = useState(false);
     const [notFound, setNotFound] = useState(false);
-
+    function filterShortMovies(movies) {
+        return movies.filter((movie) => movie.duration <= 40);
+    }
     function searchAndFilterMovies(request) {
         setSearchRequest(request);
     }
@@ -33,9 +35,7 @@ function SavedMovies({ isLoggedIn, deleteSavedMovies, savedMovies }) {
             shortMovies ? filterShortMovies(movieList) : movieList
         );
     }, [savedMovies, shortMovies, searchRequest]);
-    function filterShortMovies(movies) {
-        return movies.filter((movie) => movie.duration <= 40);
-    }
+
     function filterMovies(movies, query) {
         const moviesQuery = movies.filter((movie) => {
             const movieRU = String(movie.nameRU).toLowerCase().trim();

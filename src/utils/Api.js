@@ -83,11 +83,12 @@ class Api {
         });
         return this._getResponseData(res);
     }
-    async deleteMovies(cardId) {
+    async deleteMovies(cardId, token) {
         const res = await fetch(`${this.baseUrl}/movies/${cardId}`, {
             method: 'DELETE',
             headers: {
-                authorization: `Bearer ${localStorage.getItem('jwt')}`,
+                Accept: 'application/json',
+                authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
             },
         });

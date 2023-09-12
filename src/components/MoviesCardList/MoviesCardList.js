@@ -24,20 +24,20 @@ function MoviesCardList({
         if (display > 1025) {
             setDisplayedMovies(16);
         } else if (display > 768) {
-            setDisplayedMovies(8);
+            setDisplayedMovies(9);
         } else {
-            setDisplayedMovies(5);
+            setDisplayedMovies(6);
         }
     }
 
     function expandMoviesDisplay() {
         const display = window.innerWidth;
-        if (display >= 1280) {
+        if (display >= 1025) {
             setDisplayedMovies(displayedMovies + 4);
-        } else if (display >= 768) {
-            setDisplayedMovies(displayedMovies + 2);
+        } else if (display >= 750) {
+            setDisplayedMovies(displayedMovies + 3);
         } else {
-            setDisplayedMovies(displayedMovies + 1);
+            setDisplayedMovies(displayedMovies + 2);
         }
     }
 
