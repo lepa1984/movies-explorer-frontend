@@ -23,6 +23,8 @@
 .profile__form {
     max-width: 410px;
     margin: 0 auto;
+}
+.profile__inputs {
     margin-bottom: 220px;
 }
 .profile__input {
@@ -56,7 +58,7 @@
     line-height: normal;
     cursor: pointer;
 }
-.profile__button-save {
+.profile__button_save {
     max-width: 410px;
     margin: 0 auto;
     border-radius: 3px;
@@ -92,7 +94,7 @@
         padding: 236px 0 269px;
         text-align: center;
     }
-    .profile__form {
+    .profile__inputs {
         margin-bottom: 210px;
     }
     .profile__title {
@@ -109,7 +111,7 @@
     .profile__title {
         margin-bottom: 80px;
     }
-    .profile__form {
+    .profile__inputs {
         margin-bottom: 379px;
     }
 }

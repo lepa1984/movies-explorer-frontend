@@ -11,6 +11,12 @@ const SearchForm = ({
     const [searchRequest, setSearchRequest] = useState('');
     const [searchError, setSearchError] = useState(false);
 
+    useEffect(() => {
+        if (location.pathname === '/movies') {
+            localStorage.setItem('movieSearch', searchRequest);
+        }
+    }, [searchRequest, location]);
+
     function onSubmitForm(e) {
         e.preventDefault();
         if (searchRequest.trim().length === 0) {
@@ -21,7 +27,7 @@ const SearchForm = ({
         }
     }
 
-    function handleChangeInput(e) {
+    function changeInput(e) {
         setSearchRequest(e.target.value);
     }
 
@@ -52,7 +58,7 @@ const SearchForm = ({
                             autoComplete='off'
                             required
                             value={searchRequest || ''}
-                            onChange={handleChangeInput}
+                            onChange={changeInput}
                         />
                         <button
                             className='search-form__button '

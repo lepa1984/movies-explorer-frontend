@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     height: 100%;
-    padding: 60px 0;
+    padding: 246px 0 60px;
     box-sizing: border-box;
 }
 .not-found .container {
@@ -30,6 +30,7 @@
     font-size: 16px;
     line-height: 19px;
     text-align: center;
+    margin-bottom: 184px;
 }
 
 .not-found__button {
@@ -38,19 +39,17 @@
     line-height: 17px;
     text-align: center;
     color: #4285f4;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    border: none;
+    background: none;
 }
 
 .not-found__button:hover {
     opacity: 0.8;
     cursor: pointer;
 }
-@media (max-width: 768px) {
+@media (max-width: 750px) {
     .not-found {
-        padding: 30px 0;
+        padding: 329px 0 30px;
     }
     .not-found__title {
         font-size: 80px;
@@ -60,5 +59,6 @@
     .not-found__text {
         font-size: 12px;
         line-height: normal;
+        margin-bottom: 284px;
     }
 }

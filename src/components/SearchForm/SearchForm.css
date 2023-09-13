@@ -1,7 +1,11 @@
 .search-form {
     padding-top: 70px;
 }
-
+.search__error {
+    color: red;
+    margin-top: 20px;
+    display: block;
+}
 .search-form__form {
     padding: 19px 30px 19px 19px;
     border-radius: 9px;

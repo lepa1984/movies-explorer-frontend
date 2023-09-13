@@ -23,7 +23,6 @@ class Auth {
     }
 
     async login(email, password) {
-        console.log(email, password);
         const res = await fetch(`${this._baseUrl}/sign-in`, {
             method: 'POST',
             headers: {
