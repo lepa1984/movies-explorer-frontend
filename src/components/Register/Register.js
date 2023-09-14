@@ -54,6 +54,7 @@ const Register = ({ handleRegister }) => {
                                 placeholder='example@yandex.ru'
                                 value={values.email || ''}
                                 onChange={handleChange}
+                                pattern='\w+@\w+\.\w+'
                             />
                             <p className='register__error'>{errors.email}</p>
                         </label>
@@ -67,6 +68,7 @@ const Register = ({ handleRegister }) => {
                                 required
                                 value={values.password || ''}
                                 onChange={handleChange}
+                                minLength='8'
                             />
                             <p className='register__error'>{errors.password}</p>
                         </label>

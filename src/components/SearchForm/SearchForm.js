@@ -11,12 +11,6 @@ const SearchForm = ({
     const [searchRequest, setSearchRequest] = useState('');
     const [searchError, setSearchError] = useState(false);
 
-    useEffect(() => {
-        if (location.pathname === '/movies') {
-            localStorage.setItem('movieSearch', searchRequest);
-        }
-    }, [searchRequest, location]);
-
     function onSubmitForm(e) {
         e.preventDefault();
         if (searchRequest.trim().length === 0) {

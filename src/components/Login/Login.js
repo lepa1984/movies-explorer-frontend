@@ -36,6 +36,7 @@ const Login = ({ handleLogin }) => {
                                 placeholder='example@yandex.ru'
                                 value={values.email || ''}
                                 onChange={handleChange}
+                                pattern='\w+@\w+\.\w+'
                             />
                             <p className='login__error'>{errors.email}</p>
                         </label>
@@ -49,6 +50,7 @@ const Login = ({ handleLogin }) => {
                                 required
                                 value={values.password || ''}
                                 onChange={handleChange}
+                                minLength='8'
                             />
                             <p className='login__error'>{errors.password}</p>
                         </label>

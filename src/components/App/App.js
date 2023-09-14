@@ -1,4 +1,10 @@
-import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
+import {
+    Routes,
+    Route,
+    useNavigate,
+    Navigate,
+    useLocation,
+} from 'react-router-dom';
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import Main from '../Main/Main';
@@ -14,6 +20,8 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 function App() {
+    const location = useLocation();
+    const path = location.pathname;
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [savedMovies, setMovies] = useState([]);
     const [currentUser, setCurrentUser] = useState({});
@@ -29,6 +37,7 @@ function App() {
                 .then((res) => {
                     localStorage.removeItem('allMovies');
                     setIsLoggedIn(true);
+                    navigate(path);
                 })
                 .catch((err) => {
                     console.log(`Ошибка: ${err}`);
@@ -79,6 +88,7 @@ function App() {
             });
     }
     function addToSavedMovies(data) {
+       
         const jwt = localStorage.getItem('jwt');
         api.saveMovie(data, jwt)
             .then((newMovie) => {

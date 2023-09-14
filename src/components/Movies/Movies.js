@@ -69,10 +69,6 @@ const Movies = ({
                 .getMovies()
                 .then((moviesData) => {
                     updateFilteredMoviesList(moviesData, query, shortMovies);
-                    localStorage.setItem(
-                        'allMovies',
-                        JSON.stringify(moviesData)
-                    );
                 })
                 .catch((err) => {
                     console.log(err);
