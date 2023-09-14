@@ -4,7 +4,13 @@ import Header from '../Header/Header';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import useForm from '../../hooks/useForm';
 
-function Profile({ isLoggedIn, handleLogout, handleUpdateUser }) {
+function Profile({
+    isLoggedIn,
+    handleLogout,
+    handleUpdateUser,
+    showSuccessMessage,
+    conflictError,
+}) {
     const { values, handleChange, resetForm } = useForm();
     const currentUser = useContext(CurrentUserContext);
     const [isEditing, setIsEditing] = useState(false);
@@ -12,6 +18,7 @@ function Profile({ isLoggedIn, handleLogout, handleUpdateUser }) {
         name: '',
         email: '',
     });
+
     function handleEditClick() {
         if (!isEditing) {
             setEditValues({
@@ -108,13 +115,27 @@ function Profile({ isLoggedIn, handleLogout, handleUpdateUser }) {
                                     className={`profile__button_save `}
                                     type='submit'
                                     onClick={onSubmitUseForm}
-                                    disabled={!isLoggedIn}
+                                    disabled={
+                                        !isLoggedIn ||
+                                        (values.name === currentUser.name &&
+                                            values.email === currentUser.email)
+                                    }
                                 >
                                     Сохранить
                                 </button>
                             )}
                         </div>
-                    </form>
+                    </form>{' '}
+                    {showSuccessMessage && (
+                        <div className='profile__info'>
+                            <p>Профиль успешно сохранен!</p>
+                        </div>
+                    )}
+                    {conflictError && (
+                        <div className='profile__error'>
+                            <p>{conflictError}</p>
+                        </div>
+                    )}
                 </div>
             </main>
         </>

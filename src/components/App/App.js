@@ -28,6 +28,8 @@ function App() {
     const [successReg, setSuccessReg] = useState(false);
     const [successLogin, setSuccessLogin] = useState(false);
     const [successEdit, setSuccessEdit] = useState(false);
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+    const [conflictError, setConflictError] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -88,7 +90,6 @@ function App() {
             });
     }
     function addToSavedMovies(data) {
-       
         const jwt = localStorage.getItem('jwt');
         api.saveMovie(data, jwt)
             .then((newMovie) => {
@@ -116,9 +117,15 @@ function App() {
             .then((data) => {
                 setCurrentUser(data);
                 setSuccessEdit(true);
+                setShowSuccessMessage(true);
+                setConflictError(null);
             })
             .catch((err) => {
-                console.log(`Ошибка: ${err}`);
+                if (err.status === 409) {
+                    console.log('Ошибка 409: Этот email уже зарегистрирован.');
+                } else {
+                    console.log(`Ошибка: ${err}`);
+                }
             });
     }
 
@@ -132,7 +139,15 @@ function App() {
         localStorage.removeItem('shortMovies');
         navigate('/');
     }
+    useEffect(() => {
+        if (showSuccessMessage) {
+            const timeout = setTimeout(() => {
+                setShowSuccessMessage(false);
+            }, 3000);
 
+            return () => clearTimeout(timeout);
+        }
+    }, [showSuccessMessage]);
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <div className='page'>
@@ -170,6 +185,8 @@ function App() {
                         path='/profile'
                         element={
                             <ProtectedRoute
+                                showSuccessMessage={showSuccessMessage}
+                                conflictError={conflictError}
                                 element={Profile}
                                 isLoggedIn={isLoggedIn}
                                 handleLogout={handleLogout}

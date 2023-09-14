@@ -39,9 +39,15 @@ function MoviesCard({
         <article className='card'>
             <img className='card__image' src={imageUrl} alt={movie.nameRU} />
             <div className='card__wrapper'>
-                <h3 className='card__title' title={movie.nameRU}>
+                <a
+                    href={movie.trailerLink}
+                    className='card__title'
+                    title={movie.nameRU}
+                    target='_blank'
+                    rel='noreferrer'
+                >
                     {movie.nameRU}
-                </h3>
+                </a>
                 {isSavedMovies ? (
                     <button
                         className='card__button card__delete'
