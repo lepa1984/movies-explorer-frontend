@@ -134,9 +134,7 @@ function App() {
         }
     }, [showSuccessMessage]);
     useEffect(() => {
-        const shortMovies = localStorage.getItem('shortMovies');
-
-        localStorage.setItem('shortMovies', shortMovies);
+        // localStorage.removeItem('shortMovies');
         const jwt = localStorage.getItem('jwt');
         if (isLoggedIn && jwt) {
             Promise.all([api.getProfileInfo(jwt), api.getSavedMovies(jwt)])

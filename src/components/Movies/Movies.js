@@ -36,6 +36,7 @@ const Movies = ({
     }
     function handleShortMovieToggle() {
         setShortMovies(!shortMovies);
+
         if (!shortMovies) {
             if (filterShortMovies(initialMovies).length === 0) {
                 setFilteredMovies(filterShortMovies(initialMovies));
@@ -49,7 +50,7 @@ const Movies = ({
     }
 
     function updateFilteredMoviesList(movies, query, short) {
-        const moviesCardList = filterMovies(movies, query, short);
+        const moviesCardList = filterMovies(movies, query);
         setInitialMovies(moviesCardList);
         setFilteredMovies(
             short ? filterShortMovies(moviesCardList) : moviesCardList
@@ -82,7 +83,7 @@ const Movies = ({
 
     useEffect(() => {
         const query = localStorage.getItem('shortMovies');
-        if (query) {
+        if (query === 'true') {
             setShortMovies(true);
         } else {
             setShortMovies(false);
@@ -99,6 +100,7 @@ const Movies = ({
             }
         }
     }, [filteredMovies, notFound]);
+
     useEffect(() => {
         const queryShort = localStorage.getItem('shortMovies');
         const query = localStorage.getItem('movies');
@@ -107,7 +109,7 @@ const Movies = ({
             setInitialMovies(movies);
 
             if (queryShort === 'true') {
-                filterShortMovies(movies);
+                setFilteredMovies(filterShortMovies(movies));
             } else {
                 setFilteredMovies(movies);
             }

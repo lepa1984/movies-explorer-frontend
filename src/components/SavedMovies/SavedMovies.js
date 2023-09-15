@@ -48,6 +48,7 @@ function SavedMovies({ isLoggedIn, deleteSavedMovies, savedMovies }) {
         });
         return moviesQuery;
     }
+
     return (
         <>
             <Header isLoggedIn={isLoggedIn} />
