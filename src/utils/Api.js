@@ -53,6 +53,7 @@ class Api {
         const res = await fetch(`${this.baseUrl}/movies`, {
             method: 'POST',
             headers: {
+                Accept: 'application/json',
                 authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
             },

@@ -10,7 +10,6 @@ import moviesApi from '../../utils/MoviesApi';
 
 const Movies = ({
     isLoggedIn,
-    isLoading,
     addToSavedMovies,
     deleteSavedMovies,
     savedMovies,
@@ -19,6 +18,7 @@ const Movies = ({
     const [initialMovies, setInitialMovies] = useState([]);
     const [filteredMovies, setFilteredMovies] = useState([]);
     const [notFound, setNotFound] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     function filterShortMovies(movies) {
         return movies.filter((movie) => movie.duration <= 40);
     }
@@ -61,23 +61,28 @@ const Movies = ({
     function allFilterMovies(query) {
         localStorage.setItem('movieSearch', query);
         localStorage.setItem('shortMovies', shortMovies);
+        setIsLoading(true);
         if (localStorage.getItem('allMovies')) {
             const movies = JSON.parse(localStorage.getItem('allMovies'));
             updateFilteredMoviesList(movies, query, shortMovies);
+            setIsLoading(false);
         } else {
             moviesApi
                 .getMovies()
                 .then((moviesData) => {
                     updateFilteredMoviesList(moviesData, query, shortMovies);
+                    setIsLoading(false);
                 })
                 .catch((err) => {
                     console.log(err);
+                    setIsLoading(false);
                 });
         }
     }
 
     useEffect(() => {
-        if (localStorage.getItem('shortMovies') === 'true') {
+        const query = localStorage.getItem('shortMovies');
+        if (query) {
             setShortMovies(true);
         } else {
             setShortMovies(false);
@@ -85,18 +90,8 @@ const Movies = ({
     }, []);
 
     useEffect(() => {
-        if (localStorage.getItem('movies')) {
-            const movies = JSON.parse(localStorage.getItem('movies'));
-            setInitialMovies(movies);
-            if (localStorage.getItem('shortMovies') === 'true') {
-                setFilteredMovies(filterShortMovies(movies));
-            } else {
-                setFilteredMovies(movies);
-            }
-        }
-    }, []);
-    useEffect(() => {
-        if (localStorage.getItem('movieSearch')) {
+        const query = localStorage.getItem('movieSearch');
+        if (query) {
             if (filteredMovies.length === 0) {
                 setNotFound(true);
             } else {
@@ -104,6 +99,21 @@ const Movies = ({
             }
         }
     }, [filteredMovies, notFound]);
+    useEffect(() => {
+        const queryShort = localStorage.getItem('shortMovies');
+        const query = localStorage.getItem('movies');
+        if (query) {
+            const movies = JSON.parse(localStorage.getItem('movies'));
+            setInitialMovies(movies);
+
+            if (queryShort === 'true') {
+                filterShortMovies(movies);
+            } else {
+                setFilteredMovies(movies);
+            }
+        }
+    }, []);
+
     return (
         <>
             <Header isLoggedIn={isLoggedIn} />

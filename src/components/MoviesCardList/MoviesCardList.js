@@ -61,6 +61,7 @@ function MoviesCardList({
     useEffect(() => {
         setDisplayedMoviesCount();
     }, [movies]);
+
     return (
         <section className='movies-cards'>
             <div className='container'>

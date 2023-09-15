@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './SearchForm.css';
 import { useLocation } from 'react-router-dom';
 const SearchForm = ({
-    isShortMovies,
+    shortMovies,
     allFilterMovies,
     onFilterMovies,
     notFound,
@@ -63,7 +63,7 @@ const SearchForm = ({
                         <input
                             type='checkbox'
                             onChange={onFilterMovies}
-                            checked={isShortMovies}
+                            checked={shortMovies}
                         />
                         <span />
                         <p>Короткометражки</p>
