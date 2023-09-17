@@ -37,17 +37,17 @@ function MoviesCard({
     }
     return (
         <article className='card'>
-            <img className='card__image' src={imageUrl} alt={movie.nameRU} />
+            <a href={movie.trailerLink} target='_blank' rel='noreferrer'>
+                <img
+                    className='card__image'
+                    src={imageUrl}
+                    alt={movie.nameRU}
+                />
+            </a>
             <div className='card__wrapper'>
-                <a
-                    href={movie.trailerLink}
-                    className='card__title'
-                    title={movie.nameRU}
-                    target='_blank'
-                    rel='noreferrer'
-                >
+                <h3 className='card__title' title={movie.nameRU}>
                     {movie.nameRU}
-                </a>
+                </h3>
                 {isSavedMovies ? (
                     <button
                         className='card__button card__delete'

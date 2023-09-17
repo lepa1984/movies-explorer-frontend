@@ -115,7 +115,7 @@ function App() {
         if (jwt) {
             api.getUserInfo(jwt)
                 .then((res) => {
-                    localStorage.removeItem('allMovies');
+                    // localStorage.removeItem('allMovies');
                     setIsLoggedIn(true);
                     navigate(path);
                 })

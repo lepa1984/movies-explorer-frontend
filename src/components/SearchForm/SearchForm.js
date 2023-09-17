@@ -62,6 +62,7 @@ const SearchForm = ({
                     <label className='search-form__checkbox'>
                         <input
                             type='checkbox'
+                            onSubmit={onSubmitForm}
                             onChange={onFilterMovies}
                             checked={shortMovies}
                         />
